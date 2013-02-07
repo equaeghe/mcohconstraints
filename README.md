@@ -32,4 +32,4 @@ For me, it sufficed to type the following on the Matlab/Octave command prompt:
 
 * bensolve's code contains Matlabisms that Octave chokes on; to get it running
 in Octave sufficiently for mcohconstraints, just replace all occurences of
-"display(" by "disp(" in bensolve.m (without the quotes, of course).
+`display(` by `disp(` in bensolve.m.
