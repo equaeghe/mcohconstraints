@@ -13,11 +13,13 @@ These files have been tested with Octave 3.4.3 and Matlab R2012a
 
 To use them, you need cddmex and/or bensolve:
 
-* cddmex: (I last used version version 1.00)
+* cddmex: 
     http://control.ee.ethz.ch/~hybrid/cdd.php
+(I last used version version 1.00)
 
-* bensolve: (I last used version 1.2)
+* bensolve:
     http://ito.mathematik.uni-halle.de/~loehne/index_en_dl.php
+(I last used version 1.2)
 
 
 Notes about cddmex and bensolve:
@@ -26,8 +28,7 @@ Notes about cddmex and bensolve:
 recent linux distribution, my advice is to install cddlib using your package
 manager and then compile the included c-file into a mexfile yourself.
 For me, it sufficed to type the following on the Matlab/Octave command prompt:
-
-    mex -v cddmex.c -lcdd
+```mex -v cddmex.c -lcdd```
 
 * bensolve's code contains Matlabisms that Octave chokes on; to get it running
 in Octave sufficiently for mcohconstraints, just replace all occurences of
