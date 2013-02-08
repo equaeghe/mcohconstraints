@@ -94,8 +94,7 @@ function constraints = coh_constraints_cddmex(K)
   V0 = unique(vertcat(V0{1:end}), 'rows');
   V1 = unique(vertcat(V1{1:end}), 'rows');
 
-  % add positivity constraints and then remove redundant constraints,
-  % including the one corresponding to the zero vector
+  % add positivity constraints and then remove redundant constraints
   H = struct('A', [V0; V1; -eye(m)], ...
              'B', [zeros(size(V0, 1), 1); ones(size(V1, 1), 1); ...
                    zeros(m, 1)]);

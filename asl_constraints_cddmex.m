@@ -53,8 +53,7 @@ function constraints = asl_constraints_cddmex(K)
   H = struct('A', [K; -eye(m)], 'B', [ones(n, 1); zeros(m, 1)]);
   V = getfield(cddmex('extreme', H), 'V');
 
-  % add positivity constraints and then remove redundant constraints,
-  % including the one corresponding to the zero vector
+  % add positivity constraints and then remove redundant constraints
   H = struct('A', [V; -eye(m)], ...
              'B', [ones(size(V, 1), 1); zeros(m, 1)]);
   constraints = cddmex('reduce_h', H);
