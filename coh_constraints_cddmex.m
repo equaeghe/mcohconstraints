@@ -60,7 +60,7 @@ function constraints = coh_constraints_cddmex(K)
   % preallocate some datastructures
   V0 = cell(1,m);
   V1 = cell(1,m+1);
-  
+
   % case λ >= 0 except for one component λ_k <= 0:
   for k = 1:m
     % modify gamble matrix to simulate nonpositive λ_k
