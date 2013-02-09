@@ -33,7 +33,7 @@ function asl_vertrays(K, filename, numbertype)
 
   % put the data in one matrix, rows with leading ones indicate vertices, rows
   % with leading zeros indicate extreme rays
-  data = [ones(size(K, 1), 1) K; zeros(size(K, 2), 1) -eye(size(K, 2))];
+  data = [ones(n, 1) K; zeros(m, 1) -eye(m)];
 
   % depending on the output number type we need to convert the data and define
   % the format for writing out the data differently
