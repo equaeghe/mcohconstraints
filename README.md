@@ -14,7 +14,7 @@ accessed from the Matlab/Octave console with ```help <function_name>```.
 They have been tested with Octave 3.4.3 and Matlab R2012a
 (i.e., 7.14.0.739) on 64bit Linux.
 
-The functions call some non-standard supporting functions, i.e., you need
+Some functions call some non-standard supporting functions, i.e., you need
 cddmex and/or bensolve:
 
 * cddmex: 
