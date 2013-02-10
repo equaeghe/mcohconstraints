@@ -51,11 +51,11 @@ function asl_vertrays(K, filename, numbertype)
 
   % open, write, and close the file
   fid = fopen(filename, 'wt');
-  fprintf(fid, '%s\n', 'V-representation');
-  fprintf(fid, '%s\n', 'begin');
-  fprintf(fid, '%u %u %s\n', n + m, m + 1, numbertype);
-  fprintf(fid, formatspec, data');
-  fprintf(fid, '%s\n', 'end');
+    fprintf(fid, '%s\n', 'V-representation');
+    fprintf(fid, '%s\n', 'begin');
+    fprintf(fid, '%u %u %s\n', n + m, m + 1, numbertype);
+    fprintf(fid, formatspec, data');
+    fprintf(fid, '%s\n', 'end');
   fclose(fid);
 
 end
