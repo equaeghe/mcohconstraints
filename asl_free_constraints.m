@@ -21,21 +21,22 @@ function asl_free_constraints(K, filename, numbertype)
 %    be dominated by a linear prevision, i.e., a convex combination of
 %    degenerate previsions; these correspond to the rows of K. This means that
 %    it belongs to the polyhedron defined by the constraints P <= K'μ, μ >= 0,
-%    and 1'μ <= 1. These are written out to
-%    a file in 'Polyhedra H format'. This format can be read by polytpe theory
-%    programs such as cddlib and lrs, for example, to compute the P-only
-%    H-representation of the set of lower previsions on K that avoid sure loss.
-%    Using cddlib, one would, e.g., say (on a Unix command line)
+%    and 1'μ == 1. These are written out to a file in 'Polyhedra H format'.
+%    This format can be read by polytpe theory programs such as cddlib and lrs,
+%    for example, to compute the P-only H-representation of the set of lower
+%    previsions on K that avoid sure loss. Using cddlib, one would, e.g.,
+%    say (on a Unix command line)
 %
-%           tail -1 my_asl_free_constraints_file.ext | projection_gmp my_asl_free_constraints_file.ext
+%           tail -1 my_output_file.ine | projection_gmp my_output_file.ine > my_projected_file.ine
 %
 %    (the last line of the output of this function is especially tailored
 %    for this).
 
   [n, m] = size(K);
 
-  A = [eye(m), -K'; zeros(n, m), -eye(n); zeros(1, m), ones(1, n)];
-  b = [zeros(m + n, 1); 1];
+  A = [eye(m), -K'; zeros(n, m), -eye(n); ...
+       zeros(1, m), ones(1, n); zeros(1, m), -ones(1, n)];
+  b = [zeros(m + n, 1); 1; -1];
 
   % depending on the output number type we need to convert the data and define
   % the format for writing out the data differently
@@ -57,7 +58,7 @@ function asl_free_constraints(K, filename, numbertype)
   fid = fopen(filename, 'wt');
     fprintf(fid, '%s\n', 'H-representation');
     fprintf(fid, '%s\n', 'begin');
-    fprintf(fid, '%u %u %s\n', m + n + 1, m + n + 1, numbertype);
+    fprintf(fid, '%u %u %s\n', m + n + 2, m + n + 1, numbertype);
     fprintf(fid, formatspec, [b, -A]');
     fprintf(fid, '%s\n', 'end');
     fprintf(fid, ['%u ', repmat(' % u', 1, n), '\n'], n, m+1:m+n);
