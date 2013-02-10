@@ -14,7 +14,7 @@ function asl_vertrays(K, filename, numbertype)
 %                 case means 'truncated'
 %
 % Output:
-%    a file named 'filename' in the pesent working directory
+%    a file named 'filename' in the present working directory
 %
 % Background & Method:
 %    To avoid sure loss, a lower prevision defined on a set of gambles K must
