@@ -2,7 +2,7 @@ function constraints = coh_free_constraints(K)
 % COH_FREE_CONSTRAINTS  returns the 'free' constraints for coherence
 %
 % Synopsis:
-%    coh_free_constraints(K)
+%    constraints = coh_free_constraints(K)
 %
 % Input:
 %    K = a nonnegative matrix with nonconstant columns ("gambles")

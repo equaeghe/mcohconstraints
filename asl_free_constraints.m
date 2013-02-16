@@ -2,7 +2,7 @@ function constraints = asl_free_constraints(K)
 % ASL_FREE_CONSTRAINTS  returns the 'free' constraints for avoiding sure loss
 %
 % Synopsis:
-%    asl_free_constraints(K)
+%    constraints = asl_free_constraints(K)
 %
 % Input:
 %    K = a nonnegative matrix with nonconstant columns ("gambles")
