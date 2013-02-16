@@ -1,4 +1,4 @@
-function [A, b] = coh_free_constraints(K)
+function constraints = coh_free_constraints(K)
 % COH_FREE_CONSTRAINTS  returns the 'free' constraints for coherence
 %
 % Synopsis:
@@ -8,8 +8,14 @@ function [A, b] = coh_free_constraints(K)
 %    K = a nonnegative matrix with nonconstant columns ("gambles")
 %
 % Output:
-%    A = the constraints' coeffiecient matrix
-%    b = the constraints' right hand side vector
+%    constraints = a struct describing constraints P'λ <= α with three
+%                  fields:
+%                    * A, a matrix containing the constraint coefficients
+%                         as rows
+%                    * B, a column vector containing the corresponding
+%                         constraint constants as components
+%                    * lin, a column vector with indices of constraints
+%                           that are actually equalities (== instead of <=)
 %
 % Background & Method:
 %    To be coherent, a lower prevision defined on a set of gambles K must
@@ -47,5 +53,7 @@ function [A, b] = coh_free_constraints(K)
     A((m+1)*(m+n+1)+k+1,m+k*n+N) = -ones(1, n);
     b((m+1)*(m+n+1)+k+1) = -1;
   end
+
+  constraints = struct('lin', [], 'A', A, 'B', b);
 
 end

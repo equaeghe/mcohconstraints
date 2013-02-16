@@ -34,7 +34,10 @@ function asl_free_constraints_file(K, filename, numbertype)
 %
 % See also ASL_FREE_CONSTRAINTS, COH_FREE_CONSTRAINTS_FILE
 
-  [A, b] = asl_free_constraints(K);
+  constraints = asl_free_constraints(K);
+  A = constraints.A;
+  b = constraints.B;
+  clear constraints;
   [n, m] = size(K);
   [Arows, Acols] = size(A);
 

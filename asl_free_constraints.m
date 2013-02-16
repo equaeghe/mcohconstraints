@@ -1,4 +1,4 @@
-function [A, b] = asl_free_constraints(K)
+function constraints = asl_free_constraints(K)
 % ASL_FREE_CONSTRAINTS  returns the 'free' constraints for avoiding sure loss
 %
 % Synopsis:
@@ -8,8 +8,14 @@ function [A, b] = asl_free_constraints(K)
 %    K = a nonnegative matrix with nonconstant columns ("gambles")
 %
 % Output:
-%    A = the constraints' coeffiecient matrix
-%    b = the constraints' right hand side vector
+%    constraints = a struct describing constraints P'λ <= α with three
+%                  fields:
+%                    * A, a matrix containing the constraint coefficients
+%                         as rows
+%                    * B, a column vector containing the corresponding
+%                         constraint constants as components
+%                    * lin, a column vector with indices of constraints
+%                           that are actually equalities (== instead of <=)
 %
 % Background & Method:
 %    To avoid sure loss, a lower prevision defined on a set of gambles K must
@@ -25,5 +31,7 @@ function [A, b] = asl_free_constraints(K)
   A = [eye(m), -K'; zeros(n, m), -eye(n); ...
        zeros(1, m), ones(1, n); zeros(1, m), -ones(1, n)];
   b = [zeros(m + n, 1); 1; -1];
+
+  constraints = struct('lin', [], 'A', A, 'B', b);
 
 end

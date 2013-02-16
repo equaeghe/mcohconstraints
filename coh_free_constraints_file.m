@@ -33,7 +33,10 @@ function coh_free_constraints_file(K, filename, numbertype)
 %
 % See also COH_FREE_CONSTRAINTS, ASL_FREE_CONSTRAINTS_FILE
 
-  [A, b] = coh_free_constraints(K);
+  constraints = asl_free_constraints(K);
+  A = constraints.A;
+  b = constraints.B;
+  clear constraints;
   [n, m] = size(K);
   [Arows, Acols] = size(A);
 
