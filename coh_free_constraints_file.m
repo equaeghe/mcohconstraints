@@ -30,49 +30,25 @@ function coh_free_constraints_file(K, filename, numbertype)
 %
 %    (the last line of the output of this function is especially tailored
 %    for this).
+%
+% See also COH_FREE_CONSTRAINTS, ASL_FREE_CONSTRAINTS_FILE
 
+  [A, b] = coh_free_constraints(K);
   [n, m] = size(K);
-  N = 1:n;
-  M = 1:m;
-
-  % preallocate
-  A = zeros((m + 1) * (m + n + 2), m * (1 + n));
-  b = zeros((m + 1) * (m + n + 2), 1);
-
-
-  A(M,M) = eye(m);
-  A(M,m+N) = -K';
-  A((m+1)*m+N,m+N) = -eye(n);
-  A((m+1)*(m+n)+1,m+N) = ones(1, n);
-  b((m+1)*(m+n)+1) = 1;
-  A((m+1)*(m+n+1)+1,m+N) = -ones(1, n);
-  b((m+1)*(m+n+1)+1) = -1;
-
-  for k = M
-    S = eye(m);
-    S(k,k) = -1;
-
-    A(k*m+M,M) = S;
-    A(k*m+M,m+k*n+N) = -S*K';
-    A((m+1)*m+k*n+N,m+k*n+N) = -eye(n);
-    A((m+1)*(m+n)+k+1,m+k*n+N) = ones(1, n);
-    b((m+1)*(m+n)+k+1) = 1;
-    A((m+1)*(m+n+1)+k+1,m+k*n+N) = -ones(1, n);
-    b((m+1)*(m+n+1)+k+1) = -1;
-  end
+  [Arows, Acols] = size(A);
 
   % depending on the output number type we need to convert the data and define
   % the format for writing out the data differently
   if strcmpi(numbertype, 'real')
-    formatspec = [repmat(' % f', 1, m + (m + 1) * n + 1), '\n'];
+    formatspec = [repmat(' % f', 1, Acols + 1), '\n'];
   elseif strcmpi(numbertype, 'rational')
     A = rats(A);
     b = rats(b);
-    formatspec = [repmat(' % s', 1, m + (m + 1) * n + 1), '\n'];
+    formatspec = [repmat(' % s', 1, Acols + 1), '\n'];
   elseif strcmpi(numbertype, 'integer')
     A = int32(A);
     b = int32(b);
-    formatspec = [repmat(' % i', 1, m + (m + 1) * n + 1), '\n'];
+    formatspec = [repmat(' % i', 1, Acols + 1), '\n'];
   else
     error('invalid numbertype');
   end
@@ -81,8 +57,7 @@ function coh_free_constraints_file(K, filename, numbertype)
   fid = fopen(filename, 'wt');
     fprintf(fid, '%s\n', 'H-representation');
     fprintf(fid, '%s\n', 'begin');
-    fprintf(fid, '%u %u %s\n', (m + 1) * (m + n + 2), ...
-                               m + (m + 1) * n + 1, numbertype);
+    fprintf(fid, '%u %u %s\n', Arows, Acols + 1, numbertype);
     fprintf(fid, formatspec, [b, -A]');
     fprintf(fid, '%s\n', 'end');
     fprintf(fid, ['%u ', repmat(' % u', 1, (m + 1) * n), '\n'], ...

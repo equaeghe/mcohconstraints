@@ -31,25 +31,25 @@ function asl_free_constraints_file(K, filename, numbertype)
 %
 %    (the last line of the output of this function is especially tailored
 %    for this).
+%
+% See also ASL_FREE_CONSTRAINTS, COH_FREE_CONSTRAINTS_FILE
 
+  [A, b] = asl_free_constraints(K);
   [n, m] = size(K);
-
-  A = [eye(m), -K'; zeros(n, m), -eye(n); ...
-       zeros(1, m), ones(1, n); zeros(1, m), -ones(1, n)];
-  b = [zeros(m + n, 1); 1; -1];
+  [Arows, Acols] = size(A);
 
   % depending on the output number type we need to convert the data and define
   % the format for writing out the data differently
   if strcmpi(numbertype, 'real')
-    formatspec = [repmat(' % f', 1, m + n + 1), '\n'];
+    formatspec = [repmat(' % f', 1, Acols + 1), '\n'];
   elseif strcmpi(numbertype, 'rational')
     A = rats(A);
     b = rats(b);
-    formatspec = [repmat(' % s', 1, m + n + 1), '\n'];
+    formatspec = [repmat(' % s', 1, Acols + 1), '\n'];
   elseif strcmpi(numbertype, 'integer')
     A = int32(A);
     b = int32(b);
-    formatspec = [repmat(' % i', 1, m + n + 1), '\n'];
+    formatspec = [repmat(' % i', 1, Acols + 1), '\n'];
   else
     error('invalid numbertype');
   end
@@ -58,7 +58,7 @@ function asl_free_constraints_file(K, filename, numbertype)
   fid = fopen(filename, 'wt');
     fprintf(fid, '%s\n', 'H-representation');
     fprintf(fid, '%s\n', 'begin');
-    fprintf(fid, '%u %u %s\n', m + n + 2, m + n + 1, numbertype);
+    fprintf(fid, '%u %u %s\n', Arows, Acols + 1, numbertype);
     fprintf(fid, formatspec, [b, -A]');
     fprintf(fid, '%s\n', 'end');
     fprintf(fid, ['%u ', repmat(' % u', 1, n), '\n'], n, m+1:m+n);

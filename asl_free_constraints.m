@@ -17,6 +17,8 @@ function [A, b] = asl_free_constraints(K)
 %    degenerate previsions; these correspond to the rows of K. This means that
 %    it belongs to the polyhedron defined by the constraints P <= K'μ, μ >= 0,
 %    and 1'μ == 1.
+%
+% See also ASL_FREE_CONSTRAINTS_FILE, ASL_FREE_CONSTRAINTS
 
   [n, m] = size(K);
 

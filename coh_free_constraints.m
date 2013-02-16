@@ -16,6 +16,8 @@ function [A, b] = coh_free_constraints(K)
 %    belong to the polyhedron defined by the constraints SP <= SK'μ_S,
 %    μ_S >= 0, and 1'μ_S == 1 for all matrices S that differ from the identity
 %    matrix by at most one signchange.
+%
+% See also COH_FREE_CONSTRAINTS_FILE, ASL_FREE_CONSTRAINTS
 
   [n, m] = size(K);
   N = 1:n;
