@@ -1,4 +1,4 @@
-function [Mtime, Ftime] = cohcorr_test(statenum, gamblenum, lprnum)
+function [Mtime0, Mtime, Ftime0, Ftime] = cohcorr_test(statenum, gamblenum, lprnum)
 
   eps = 10^(-10);
 
@@ -10,8 +10,15 @@ function [Mtime, Ftime] = cohcorr_test(statenum, gamblenum, lprnum)
     L(:,l) = [];
   end
 
-  Mconstraints = coh_constraints_cddmex(K);
-  Fconstraints = coh_free_constraints(K);
+  start = cputime;
+    Mconstraints = coh_constraints_cddmex(K);
+  stop = cputime;
+  Mtime0 = stop - start;
+
+  start = cputime;
+    Fconstraints = coh_free_constraints(K);
+  stop = cputime;
+  Ftime0 = stop - start;
 
   lprs = randlprs_bnd(lprnum, K);
 
@@ -20,18 +27,23 @@ function [Mtime, Ftime] = cohcorr_test(statenum, gamblenum, lprnum)
 
   for lpr = lprs
 
-    Mtime = Mtime - cputime;
-      Mcohcorr = cohcorr_bensolve(Mconstraints, lpr);
-    Mtime = Mtime + cputime;
+    start = cputime;
+      [Mcohcorr, Mmaxnum] = cohcorr_bensolve(Mconstraints, lpr);
+    stop = cputime;
+    Mtime = Mtime + (stop - start) / Mmaxnum;
 
-    Ftime = Ftime - cputime;
-      Fcohcorr = cohcorr_bensolve(Mconstraints, lpr);
-    Ftime = Ftime + cputime;
+    start = cputime;
+      [Fcohcorr, Fmaxnum] = cohcorr_bensolve(Fconstraints, lpr);
+    stop = cputime;
+    Ftime = Ftime + (stop - start) / Fmaxnum;
 
     if sum(abs(Mcohcorr - Fcohcorr)) > eps
       error(['The minimal and free constraints give different answers,' ...
              ' or roundoff error excess']);
     end
   end
+
+  Mtime = Mtime / lprnum;
+  Ftime = Ftime / lprnum;
 
 end
