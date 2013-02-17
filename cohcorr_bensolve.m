@@ -10,7 +10,7 @@ function [cohcorr, maxnum] = cohcorr_bensolve(constraints, lpr)
 
   [~, ~, ~, cohcorr_maximals, ~, ~] = bensolve(C, A, b, [], [], [], options);
 
-  cohcorr = min(-cohcorr_maximals')';
+  cohcorr = min(-cohcorr_maximals, [], 2);
   maxnum = size(cohcorr_maximals, 2);
 
 end
