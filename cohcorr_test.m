@@ -1,4 +1,5 @@
-function [Mtime0, Mtime, Ftime0, Ftime] = cohcorr_test(statenum, gamblenum, lprnum)
+function [Mtime0, Mtime, ...
+          Ftime0, Ftime] = cohcorr_test(statenum, gamblenum, lprnum)
 
   eps = 10^(-10);
 

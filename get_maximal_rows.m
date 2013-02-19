@@ -18,9 +18,9 @@ function maximals = get_maximal_rows(unknowns)
 %    scanning algorithm inspired by, but not equal to, the 'Best' algorithm
 %    as presented in
 %
-%      Godfrey, P., Shipley, R., & Gryz, J. (2007). “Algorithms and analyses
-%      for maximal vector computation.” The VLDB Journal, 16(1), 5-28.
-%      doi:10.1007/s00778-006-0029-7
+%      Godfrey, P., Shipley, R., & Gryz, J. (2007). “Algorithms and
+%      analyses for maximal vector computation.” The VLDB Journal, 16(1),
+%      5-28. doi:10.1007/s00778-006-0029-7
 
   % preallocate
   maximals = [];

@@ -8,7 +8,8 @@ function [cohcorr, maxnum] = cohcorr_bensolve(constraints, lpr)
   b = [-constraints.B; -lpr];
   options = struct('info', 0, 'vert_enum', 'C');
 
-  [~, ~, ~, cohcorr_maximals, ~, ~] = bensolve(C, A, b, [], [], [], options);
+  [~, ~, ~, cohcorr_maximals, ~, ~] = bensolve(C, A, b, [], [], [], ...
+                                               options);
 
   cohcorr = min(-cohcorr_maximals, [], 2);
   maxnum = size(cohcorr_maximals, 2);

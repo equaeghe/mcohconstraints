@@ -18,11 +18,11 @@ function constraints = asl_free_constraints(K)
 %                           that are actually equalities (== instead of <=)
 %
 % Background & Method:
-%    To avoid sure loss, a lower prevision defined on a set of gambles K must
-%    be dominated by a linear prevision, i.e., a convex combination of
-%    degenerate previsions; these correspond to the rows of K. This means that
-%    it belongs to the polyhedron defined by the constraints P <= K'μ, μ >= 0,
-%    and 1'μ == 1.
+%    To avoid sure loss, a lower prevision defined on a set of gambles K
+%    must be dominated by a linear prevision, i.e., a convex combination of
+%    degenerate previsions; these correspond to the rows of K. This means
+%    that it belongs to the polyhedron defined by the constraints P <= K'μ,
+%    μ >= 0, and 1'μ == 1.
 %
 % See also ASL_FREE_CONSTRAINTS_FILE, ASL_FREE_CONSTRAINTS
 

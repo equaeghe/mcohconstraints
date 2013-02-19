@@ -20,7 +20,7 @@ function cohcorr = cohcorr_pointwise(constraints, lpr)
     c = C(n,:);
     ctype = [repmat('U', 1, l), repmat('S', 1, m)];
     ctype(l+n) = 'U';
-    [~, cohcorr(n), status, ~] = glpk(c, A, b, [], [], ctype, [], -1);
+    [~, cohcorr(n), ~, ~] = glpk(c, A, b, [], [], ctype, [], -1);
   end
 
 end

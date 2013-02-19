@@ -20,8 +20,8 @@ function constraints = coh_free_constraints(K)
 % Background & Method:
 %    To be coherent, a lower prevision defined on a set of gambles K must
 %    belong to the polyhedron defined by the constraints SP <= SK'μ_S,
-%    μ_S >= 0, and 1'μ_S == 1 for all matrices S that differ from the identity
-%    matrix by at most one signchange.
+%    μ_S >= 0, and 1'μ_S == 1 for all matrices S that differ from the
+%    identity matrix by at most one signchange.
 %
 % See also COH_FREE_CONSTRAINTS_FILE, ASL_FREE_CONSTRAINTS
 

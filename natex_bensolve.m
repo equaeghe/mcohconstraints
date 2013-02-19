@@ -6,7 +6,8 @@ function natex = natex_bensolve(constraints, lpr)
   C = [eye(m), zeros(m, k-m)];
   A = [-constraints.A; eye(m), zeros(m, k-m)];
   b = [-constraints.B; lpr];
+  options = struct('info', 0);
 
-  [~, ~, ~, natex, ~, ~] = bensolve(C, A, b, [], [], [], struct('info', 0));
+  [~, ~, ~, natex, ~, ~] = bensolve(C, A, b, [], [], [], options);
 
 end
