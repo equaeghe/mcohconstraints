@@ -1,5 +1,17 @@
 function [Mtime0, Mtime, ...
           Ftime0, Ftime] = cohcorr_test(statenum, gamblenum, lprnum)
+% ***  ***
+%
+% Synopsis:
+%    ***
+%
+% Input:
+%    *** = ***
+%
+% Output:
+%    *** = ***
+%
+% Background & Method:
 
   eps = 10^(-10);
 
