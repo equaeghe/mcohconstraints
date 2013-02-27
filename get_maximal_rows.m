@@ -26,11 +26,11 @@ function maximals = get_maximal_rows(unknowns)
   maximals = [];
 
   while ~isempty(unknowns)
-    candidate = unknowns(1, :);
+    candidate = unknowns(1,:);
 
     % assume the candidate is maximal and compare it with all other rows
     maximals = [maximals; candidate];
-    unknowns(1, :) = [];
+    unknowns(1,:) = [];
     dominated = [];
     for k = 1:size(unknowns, 1)
       comparandum = unknowns(k,:);
