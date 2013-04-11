@@ -1,8 +1,8 @@
-function asl_vertrays(K, filename, numbertype)
-% ASL_VERTRAYS  writes out vertices and extreme rays for avoiding sure loss
+function asl_vertrays_file(K, filename, numbertype)
+% ASL_VERTRAYS_FILE  writes out vertices and extreme rays for avoiding sure loss
 %
 % Synopsis:
-%    asl_vertrays(K, filename, numbertype)
+%    asl_vertrays_file(K, filename, numbertype)
 %
 % Input:
 %    K = a nonnegative matrix with nonconstant columns ("gambles")
