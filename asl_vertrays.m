@@ -23,6 +23,8 @@ function constraints = asl_vertrays(K)
 %    degenerate previsions; these correspond to the rows of K. This means
 %    that it belongs to the polyhedron defined by the degenerate previsions
 %    as vertices and negative directions as extreme rays.
+%
+%  See also ASL_VERTRAYS_FILE
 
   H = cddmex('hull', struct('V', K, 'R', -eye(length(K))));
   constraints = cddmex('reduce_h', H);

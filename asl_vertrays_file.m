@@ -30,6 +30,8 @@ function asl_vertrays_file(K, filename, numbertype)
 %    Unix command line)
 %
 %           lcdd_gmp my_asl_vertrays_file.ext > my_asl_vertrays_file.ine
+%
+%  See also ASL_VERTRAYS
 
   [n, m] = size(K);
 
