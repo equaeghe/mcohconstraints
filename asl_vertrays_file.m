@@ -31,7 +31,7 @@ function asl_vertrays_file(K, filename, numbertype)
 %
 %           lcdd_gmp my_asl_vertrays_file.ext > my_asl_vertrays_file.ine
 %
-%  See also ASL_VERTRAYS
+%  See also ASL_CONSTRAINTS_VERTRAYS
 
   [n, m] = size(K);
 

@@ -1,8 +1,8 @@
-function constraints = coh_vertrays(K)
-% COH_VERTRAYS  returns coherence constraints
+function constraints = coh_constraints_vertrays(K)
+% COH_CONSTRAINTS_VERTRAYS  returns coherence constraints
 %
 % Synopsis:
-%    coh_vertrays(K)
+%    coh_constraints_vertrays(K)
 %
 % Input:
 %    K = a nonnegative matrix with nonconstant columns ("gambles")
@@ -26,7 +26,7 @@ function constraints = coh_vertrays(K)
 %    by the degenerate previsions as vertices and the columns of -S as
 %    extreme rays.
 %
-%  See also CDDMEX, ASL_VERTRAYS
+%  See also CDDMEX, ASL_CONSTRAINTS_VERTRAYS
 
   [n, m] = size(K);
 
