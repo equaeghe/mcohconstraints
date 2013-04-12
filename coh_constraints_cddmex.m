@@ -72,7 +72,7 @@ function constraints = coh_constraints_cddmex(K)
     % i.e., {[Kk; -I; I)λ <= [0; 0; 1]}:
     H = struct('A', [Kk; -eye(m); eye(m)], ...
                'B', [zeros(n, 1); zeros(m, 1); ones(m, 1)]);
-    V0{k} = getfield(cddmex('extreme', H), 'V');       
+    V0{k} = getfield(cddmex('extreme', H), 'V');
 
     % case α = 1:
     % vertex enumerate {λ >= 0: Kkλ <= 1}, i.e., {[Kk; -I)λ <= [1; 0]}:
