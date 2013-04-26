@@ -3,17 +3,18 @@ mcohconstraints
 
 Matlab/Octave functions for generating coherence and avoiding sure loss constraints for lower previsions and for calculating downward corrections of incoherent lower previsions
 
-
-License:
-    https://creativecommons.org/licenses/by-sa/3.0/
-
-
-The functions are documented in the m-files, and this documentation can be
+Code
+----
+**Usage** The functions are documented in the m-files, and this documentation can be
 accessed from the Matlab/Octave console with ```help <function_name>```.
 
 They have been tested with Octave 3.4.3 and a little bit with Matlab R2012a
 (i.e., 7.14.0.739) on 64bit Linux.
 
+**Licensing** CC BY-SA 3.0, see https://creativecommons.org/licenses/by-sa/3.0/
+
+External code
+-------------
 Some functions call some non-standard supporting functions, i.e., you need
 cddmex and/or bensolve:
 
@@ -41,3 +42,14 @@ For me, it sufficed to type the following on the Matlab/Octave command prompt:
 * bensolve's code contains Matlabisms that Octave chokes on; to get it running
 in Octave sufficiently for mcohconstraints, just replace all occurences of
 `display(` by `disp(` in bensolve.m.
+
+References & citing
+-------------------
+This code has been used for my research.
+This research has been presented at a conference:
+
+> Quaeghebeur, Erik. 2010.
+> “Characterizing coherence, correcting incoherence”
+> Accepted for ISIPTA '13.
+
+Please cite this paper if you use any material in this repository.
