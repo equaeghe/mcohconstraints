@@ -31,7 +31,10 @@ function constraints = coh_constraints_vertrays(K)
   [n, m] = size(K);
 
   % preallocate
-  AB = cell(1,m);
+  ABS = cell(1, m + 1);
+
+  HI = cddmex('hull', struct('V', K, 'R', -eye(m)));
+  ABS{m+1} = [HI.A, HI.B; -HI.A(HI.lin), -HI.B(HI.lin)];
 
   for k = 1:m
     % create S-matrix:
